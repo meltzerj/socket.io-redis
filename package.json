@@ -1,0 +1,25 @@
+{
+  "name": "socket.io-redis",
+  "version": "0.1.0",
+  "description": "A Redis adapter for the new Socket.io",
+  "keywords": [
+    "realtime",
+    "redis",
+    "websocket",
+    "tcp",
+    "events",
+    "socket",
+    "io",
+    "socket.io",
+    "scaling"
+  ],
+  "dependencies": {
+    "msgpack": "0.1.8"
+  },
+  "contributors": [
+    {
+      "name": "Justin Meltzer",
+      "email": "justin@usefirefly.com"
+    }
+  ]
+}
