@@ -63,6 +63,17 @@ RedisAdapter.prototype.del = function(id, room){
 	this.unsubscribe(room);
 };
 
+RedisAdapter.prototype.delAll = function(id){
+	var rooms = this.sids[id];
+	if (rooms) {
+		for (var room in rooms) {
+			this.unsubscribe(room);
+		}
+	}
+
+	this.parent.prototype.delAll.apply(this, arguments);
+};
+
 RedisAdapter.prototype.unsubscribe = function(roomLeft){
 	function socketsInRoom() {
 		var roomIds = this.rooms[roomLeft]
@@ -80,10 +91,6 @@ RedisAdapter.prototype.unsubscribe = function(roomLeft){
 
 	if (!socketsInRoom())
 		this.sub.unsubscribe(roomLeft);
-};
-
-RedisAdapter.prototype.delAll = function(){
-	this.parent.prototype.delAll.apply(this, arguments);
 };
 
 RedisAdapter.prototype.broadcast = function(packet, opts){
