@@ -9,7 +9,7 @@ When using Socket.io in conjunction with multiple node servers, you need a way t
 
 ### Usage
 
-When attaching your existing http server to Socket.io or creating a new websocket server with Socket, simply require the Redis Adapter and pass it to Socket.io as an option like so:
+When attaching your existing http server to Socket.io or creating a new websocket server with Socket.io, simply require the Redis Adapter and pass it to Socket.io as an option like so:
 
 ```js
 var RedisAdapter = require('socket.io-redis');
