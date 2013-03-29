@@ -89,8 +89,10 @@ RedisAdapter.prototype.unsubscribe = function(roomLeft){
 		return flag;
 	}
 
-	if (!socketsInRoom())
+	if (!socketsInRoom()) {
 		this.sub.unsubscribe(roomLeft);
+		delete this.subscriptions[room];
+	}
 };
 
 RedisAdapter.prototype.broadcast = function(packet, opts){
