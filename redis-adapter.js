@@ -3,7 +3,6 @@
  */
 
  var Adapter = require('../socket.io/lib/adapter')
-   , redis = require('../socket.io/node_modules/redis')
    , base64id = require('../socket.io/node_modules/engine.io/node_modules/base64id')
    , msgpack = require('msgpack');
 
@@ -17,17 +16,19 @@ module.exports = RedisAdapter;
  * Redis adapter constructor.
  *
  * @param {Namespace} nsp
+ * @param {Object} pub - publisher redis client
+ * @param {Object} sub - subscriber redis client
  * @api public
  */
 
-function RedisAdapter(nsp){
+function RedisAdapter(nsp, pub, sub){
 	this.parent = Adapter;
 	parent.call(this, nsp);
 	this.subscriptions = {};
 	this.pack = msgpack.pack;
 	this.unpack = msgpack.unpack;
-	this.pub = redis.createClient();
-	this.sub = redis.createClient();
+	this.pub = pub;
+	this.sub = sub;
 	this.nodeId = this.generateNodeId();
 	this.listenForMessages();
 }
